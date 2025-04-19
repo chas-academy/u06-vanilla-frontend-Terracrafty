@@ -1,13 +1,14 @@
 import './style.css'
 import { Skill } from './resources/Skill'
+import { Weapon } from './resources/Weapon';
 
 const url = "https://u05-restful-api-terra.onrender.com/api"
 
-const skills = await Skill.fetchAll(url);
+const skills = Skill.fetchAll(url);
+const weapons = Weapon.fetchAll(url);
 
-const skillslist = document.getElementById("skills");
+async function displaylist(event) {
+    
+}
 
-skills.forEach(item => {
-    skillslist?.appendChild(item.display());
-});
 
