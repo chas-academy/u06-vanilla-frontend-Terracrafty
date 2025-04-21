@@ -41,7 +41,7 @@ class Weapon {
                     skills.push(new Skill(skill.skill.id, skill.skill.name, skill.skill.max_level, skill.level));
                 });
             }
-            out.push(new Weapon(item._id, item.name, item.type, item.raw, item.element, item.elementType, item.affinity, item.defense, item.slots1, item.slots2, item.slots3, skills, item.max_sharpness));
+            out.push(new Weapon(item._id, item.name, item.type, item.raw, item.element, item.element_type, item.affinity, item.defense, item.slots_1, item.slots_2, item.slots_3, skills, item.max_sharpness));
         });
         return out;
     }
@@ -121,6 +121,7 @@ class Weapon {
         this.skills.forEach(skill => {
             skills.appendChild(skill.display());
         });
+        fragment.appendChild(div);
         return fragment;
     }
 }
