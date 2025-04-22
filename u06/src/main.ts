@@ -1,5 +1,4 @@
 import './style.css'
-import { Skill } from './resources/Skill'
 import { Weapon } from './resources/Weapon';
 import { Armor } from './resources/Armor';
 
