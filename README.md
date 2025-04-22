@@ -1,1 +1,6 @@
-[![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-22041afd0340ce965d47ae6ef1cefeee28c7c493a6346c4f15d667ab976d596c.svg)](https://classroom.github.com/a/jvJQvZ5i)
+# Local run instructions
+
+1. Download and install [Node + NPM](https://nodejs.org/en/download).
+2. Clone the repository to your local device.
+3. Run `npm install && npm run dev` in the u06 directory.
+4. App will be available at http://localhost:5173.
