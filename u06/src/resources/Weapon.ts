@@ -46,13 +46,15 @@ class Weapon {
         return out;
     }
 
-    display(): DocumentFragment {
+    display(reduced:boolean = false): DocumentFragment {
         const fragment = new DocumentFragment();
         const div = document.createElement("div");
-        const name = div.appendChild(document.createElement("h5"))
-        name.appendChild(document.createTextNode(this.name));
-        const type = div.appendChild(document.createElement("p"));
-        type.appendChild(document.createTextNode(this.type));
+        if (!reduced) {
+            const name = div.appendChild(document.createElement("h5"))
+            name.appendChild(document.createTextNode(this.name));
+            const type = div.appendChild(document.createElement("p"));
+            type.appendChild(document.createTextNode(this.type));
+        }
         const raw = div.appendChild(document.createElement("p"));
         raw.appendChild(document.createTextNode("🔪 " + String(this.raw)));
         raw.title = "Physical damage";
@@ -104,23 +106,25 @@ class Weapon {
         const aff = div.appendChild(document.createElement("p"));
         aff.appendChild(document.createTextNode("⚔️ " + String(this.affinity) + "%"));
         aff.title = "Affinity";
-        const def = div.appendChild(document.createElement("p"));
-        def.appendChild(document.createTextNode("🛡️ " + String(this.defense)));
-        def.title = "Defense";
-        const slots = div.appendChild(document.createElement("p"));
-        for (let i = 0; i < this.slots3; i++) {
-            slots.appendChild(document.createTextNode("💠"));
+        if (!reduced) {
+            const def = div.appendChild(document.createElement("p"));
+            def.appendChild(document.createTextNode("🛡️ " + String(this.defense)));
+            def.title = "Defense";
+            const slots = div.appendChild(document.createElement("p"));
+            for (let i = 0; i < this.slots3; i++) {
+                slots.appendChild(document.createTextNode("💠"));
+            }
+            for (let i = 0; i < this.slots2; i++) {
+                slots.appendChild(document.createTextNode("🔷"));
+            }
+            for (let i = 0; i < this.slots1; i++) {
+                slots.appendChild(document.createTextNode("🔹"));
+            }
+            const skills = div.appendChild(document.createElement("div"));
+            this.skills.forEach(skill => {
+                skills.appendChild(skill.display());
+            });
         }
-        for (let i = 0; i < this.slots2; i++) {
-            slots.appendChild(document.createTextNode("🔷"));
-        }
-        for (let i = 0; i < this.slots1; i++) {
-            slots.appendChild(document.createTextNode("🔹"));
-        }
-        const skills = div.appendChild(document.createElement("div"));
-        this.skills.forEach(skill => {
-            skills.appendChild(skill.display());
-        });
         fragment.appendChild(div);
         return fragment;
     }

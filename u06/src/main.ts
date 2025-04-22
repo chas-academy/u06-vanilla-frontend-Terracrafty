@@ -16,6 +16,7 @@ let equippedWaist:Armor|null = null;
 let equippedLegs:Armor|null = null;
 
 const listElem = (document.getElementById("list")) as HTMLElement;
+const totalsElem = (document.getElementById("totals")) as HTMLElement;
 const equippedWeaponElem = (document.getElementById("weapon")) as HTMLElement;
 const equippedHeadElem = (document.getElementById("head")) as HTMLElement;
 const equippedChestElem = (document.getElementById("chest")) as HTMLElement;
@@ -42,6 +43,34 @@ async function update() {
     }
     if (equippedLegs) {
         equippedLegsElem.innerHTML = equippedLegs.name;
+    }
+    displayBuild();
+}
+
+async function displayBuild() { //god this code is so fucking ass if i had more time i would start over
+    totalsElem.innerHTML = "";
+    if (equippedWeapon && equippedHead && equippedChest && equippedArms && equippedWaist && equippedLegs) {
+        const div = document.createElement("div");
+        div.appendChild(equippedWeapon.display(true))
+        const def = div.appendChild(document.createElement("p"));
+        def.appendChild(document.createTextNode("🛡️ " + String(equippedWeapon.defense + equippedHead.defense + equippedChest.defense + equippedArms.defense + equippedWaist.defense + equippedLegs.defense)));
+        def.title = "Total defense";
+        const fireres = div.appendChild(document.createElement("p"));
+        fireres.appendChild(document.createTextNode("🔥 " + String(equippedHead.fireResist + equippedChest.fireResist + equippedArms.fireResist + equippedWaist.fireResist + equippedLegs.fireResist)));
+        fireres.title = "Total fire resistance";
+        const waterres = div.appendChild(document.createElement("p"));
+        waterres.appendChild(document.createTextNode("🌊 " + String(equippedHead.waterResist + equippedChest.waterResist + equippedArms.waterResist + equippedWaist.waterResist + equippedLegs.waterResist)));
+        waterres.title = "Total water resistance";
+        const thunderres = div.appendChild(document.createElement("p"));
+        thunderres.appendChild(document.createTextNode("⚡ " + String(equippedHead.thunderResist + equippedChest.thunderResist + equippedArms.thunderResist + equippedWaist.thunderResist + equippedLegs.thunderResist))); 
+        thunderres.title = "Total thunder resistance";
+        const iceres = div.appendChild(document.createElement("p"));
+        iceres.appendChild(document.createTextNode("🧊 " + String(equippedHead.iceResist + equippedChest.iceResist + equippedArms.iceResist + equippedWaist.iceResist + equippedLegs.iceResist)));
+        iceres.title = "Total ice resistance";
+        const dragonres = div.appendChild(document.createElement("p"));
+        dragonres.appendChild(document.createTextNode("🐾 " + String(equippedHead.dragonResist + equippedChest.dragonResist + equippedArms.dragonResist + equippedWaist.dragonResist + equippedLegs.dragonResist)));
+        dragonres.title = "Total dragon resistance";
+        totalsElem.appendChild(div);
     }
 }
 
